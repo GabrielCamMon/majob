@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "336427061644",
+    "firebase_url": "https://majob-96767.firebaseio.com",
+    "project_id": "majob-96767",
+    "storage_bucket": "majob-96767.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:336427061644:android:3914fe0c5ad2eff10406a9",
+        "android_client_info": {
+          "package_name": "com.gb.majob"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "336427061644-geocmlke9g7954rgub13p8cddrf4v7hf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gb.majob",
+            "certificate_hash": "8e13cc356dc57f8154fb3b0dba83bfa9bbc9c6ae"
+          }
+        },
+        {
+          "client_id": "336427061644-agmhersnnct0v175lrm5fgmg4vq04jvp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBatNOISIB5RCX5jsD63dlehuG1UCuJ0Wk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "336427061644-agmhersnnct0v175lrm5fgmg4vq04jvp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

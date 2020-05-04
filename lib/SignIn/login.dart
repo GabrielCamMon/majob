@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:majob/buttonGoogleSingin.dart';
-import 'package:majob/logoLogin.dart';
+import './buttonGoogleSingin.dart';
+import './logoLogin.dart';
 
 class Login extends StatelessWidget {
   final Function _singIn;
@@ -10,7 +10,7 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color(0x7DBFBF),
+      // color: Color(0x7DBFBF),
       width: double.infinity,
       margin: EdgeInsets.only(top: 80, bottom: 50, left: 50, right: 50),
       child: Column(

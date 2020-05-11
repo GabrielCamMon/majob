@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../Match/Match.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -7,7 +8,7 @@ class Home extends StatelessWidget {
       appBar: AppBar(
         title: Text('Home'),
       ),
-      body: Text('Tela de sshome'),
+      body: Match(),
       
     );
   }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:majob/Main/main_login.dart';
 import 'package:majob/Match/model/MatchCard.dart';
 import 'package:majob/SignIn/SignIn.dart';
 import 'package:majob/profile/profile.dart';
+import './Main/main_login.dart';
 import './Match/Match.dart';
 
 void main() => runApp(MyApp());
@@ -40,15 +40,9 @@ class _MyHomeState extends State<MyHome> {
   @override
   Widget build(BuildContext context) {
     return Container(
-<<<<<<< HEAD
-      child: Match(),
+      //child: Match(),
       //child: SignIn(),
-=======
-      // child: Match(),
-      // child: SignIn(),
-      // child: Profile(),
-      child: Main()
->>>>>>> origin/profile
+      child: Main(),
     );
   }
 }

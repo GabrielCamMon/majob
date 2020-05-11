@@ -4,6 +4,7 @@ import 'package:majob/SignIn/SignIn.dart';
 import 'package:majob/profile/profile.dart';
 import './Main/main_login.dart';
 import './Match/Match.dart';
+import './Chat/views/chat_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -43,6 +44,7 @@ class _MyHomeState extends State<MyHome> {
       //child: Match(),
       //child: SignIn(),
       child: Main(),
+      //child:ChatScreen()
     );
   }
 }

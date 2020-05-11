@@ -264,8 +264,8 @@ class _ConversationScreenState extends State<ConversationScreen> {
                             borderRadius: BorderRadius.circular(25),
                             gradient: LinearGradient(
                                 colors: [
-                                  const Color(0xffA2834D),
-                                  const Color(0xffBC9A5F)
+                                  const Color(0xffccc),
+                                  const Color(0xffccc)
                                 ],
                                 begin: FractionalOffset.topRight,
                                 end: FractionalOffset.bottomLeft)),
@@ -301,8 +301,8 @@ class ConversationTile extends StatelessWidget {
         decoration: BoxDecoration(
             gradient: LinearGradient(
                 colors: sendByMe
-                    ? [const Color(0xffD9B372), const Color(0xffA2834D)]
-                    : [const Color(0x1AFFFFFF), const Color(0x1AFFFFFF)],
+                    ? [Theme.of(context).primaryColor, Theme.of(context).primaryColor]
+                    : [const Color(0xffcecece), const Color(0xffcecece)],
                 begin: FractionalOffset.centerLeft,
                 end: FractionalOffset.centerRight),
             borderRadius: sendByMe
@@ -316,7 +316,7 @@ class ConversationTile extends StatelessWidget {
           message,
           textAlign: TextAlign.start,
           style: TextStyle(
-              color: Colors.white, fontSize: 14, fontWeight: FontWeight.w300),
+              color: Colors.black, fontSize: 14, fontWeight: FontWeight.w300),
         ),
       ),
     );

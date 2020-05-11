@@ -32,7 +32,7 @@ class _Main extends State<Main> {
       appBar: AppBar(
         title: Image.asset(
           './assets/images/logowhite.png',
-          height: 60,
+          height: 55,
         ),
         centerTitle: true,
       ),
@@ -52,7 +52,7 @@ class _Main extends State<Main> {
             ),
           ),
       new BottomNavigationBarItem(
-              title: Text('Perfil'), icon: Icon(Icons.chat)),
+              title: Text('Chat'), icon: Icon(Icons.chat)),
         ],
       ),
       

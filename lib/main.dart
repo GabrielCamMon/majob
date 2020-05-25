@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:majob/Match/model/MatchCard.dart';
 import 'package:majob/SignIn/SignIn.dart';
 import 'package:majob/profile/profile.dart';
+import './Cards/Card1/CardExemple.dart';
+import './Cards/Card2/CardExemple2.dart';
+import './Cards/Card3/CardExemple3.dart';
+
 import './Main/main_login.dart';
 import './Match/Match.dart';
 import './Chat/views/chat_screen.dart';
@@ -45,6 +49,7 @@ class _MyHomeState extends State<MyHome> {
       //child: SignIn(),
       child: Main(),
       //child:ChatScreen()
+     //child: CardExemple3(),
     );
   }
 }

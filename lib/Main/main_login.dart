@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:majob/Cards/Card3/CardExemple3.dart';
 import 'package:majob/Home/home.dart';
 import 'package:majob/profile/profile.dart';
 import '../Chat/views/chat_screen.dart';
+
 
 class Main extends StatefulWidget {
   _Main createState() {
@@ -14,7 +16,7 @@ class _Main extends State<Main> {
   int _currentIndex = 1;
   final List<Widget> _ontapMenu = [
     Profile(),
-    Home(),
+    CardExemple3(),
     ChatScreen(),
   ];
   void onTapMenu(int index) {

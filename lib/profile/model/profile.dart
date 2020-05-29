@@ -1,4 +1,3 @@
-import 'package:majob/profile/profile.dart';
 
 class ProfileModel {
   String name;

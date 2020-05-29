@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:majob/profile/model.dart';
+import 'package:majob/profile/model/profile.dart';
+import 'package:majob/profile/widget/buttonEditProfile.dart';
 
 class Profile extends StatelessWidget {
   
@@ -18,6 +19,9 @@ class Profile extends StatelessWidget {
       color: Colors.blue[500],
 
     );
+  }
+  void navigationProfile(){
+    print('apertou');
   }
 
   Widget _buildProfileImage(){
@@ -70,7 +74,17 @@ class Profile extends StatelessWidget {
                         fontWeight: FontWeight.w300
                       ),
 
-                    )                  
+
+
+                    ),
+                    ButtonEditProfile(
+                      titleButton: 'PESSOAL',
+                      editNavigation: navigationProfile,
+                    ),
+                    ButtonEditProfile(
+                      titleButton: 'PROFISSIONAL',
+                      editNavigation: navigationProfile,
+                    )
                 ],
               ),
             ),

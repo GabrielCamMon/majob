@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:majob/profile/model/profile.dart';
+import 'package:majob/profile/view/editPersonalProfile.dart';
+import 'package:majob/profile/view/editProfissionalProfile.dart';
 import 'package:majob/profile/widget/buttonEditProfile.dart';
 
 class Profile extends StatelessWidget {
@@ -19,9 +21,6 @@ class Profile extends StatelessWidget {
       color: Colors.blue[500],
 
     );
-  }
-  void navigationProfile(){
-    print('apertou');
   }
 
   Widget _buildProfileImage(){
@@ -44,8 +43,35 @@ class Profile extends StatelessWidget {
     );
   }
 
+
+
+    // void navigationProfile(){
+    //    print('alexa');
+    // }
+
+    
+
   @override
   Widget build(BuildContext context) {
+
+    void navigationPersonalProfile(){
+       Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => EditPersonalProfile()
+        )
+      );
+    }
+
+    void navigationProfissionalProfile(){
+       Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => EditProfissionalProfile()
+        )
+      );
+    }
+
     //pegando medidas para ficar padronizado (independente da tela)
     Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
@@ -79,11 +105,11 @@ class Profile extends StatelessWidget {
                     ),
                     ButtonEditProfile(
                       titleButton: 'PESSOAL',
-                      editNavigation: navigationProfile,
+                      editNavigation: navigationPersonalProfile,
                     ),
                     ButtonEditProfile(
                       titleButton: 'PROFISSIONAL',
-                      editNavigation: navigationProfile,
+                      editNavigation: navigationProfissionalProfile,
                     )
                 ],
               ),

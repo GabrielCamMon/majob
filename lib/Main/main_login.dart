@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:majob/Home/home.dart';
-import 'package:majob/profile/profile.dart';
+import 'package:majob/Main/widget/appBarMajob.dart';
+import 'package:majob/profile/view/profile.dart';
 import '../Chat/views/chat_screen.dart';
 
 class Main extends StatefulWidget {
@@ -29,13 +30,7 @@ class _Main extends State<Main> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: _ontapMenu[_currentIndex],
-      appBar: AppBar(
-        title: Image.asset(
-          './assets/images/logowhite.png',
-          height: 60,
-        ),
-        centerTitle: true,
-      ),
+      appBar: AppBarMajob(),
       backgroundColor: Theme.of(context).primaryColor,
       bottomNavigationBar: BottomNavigationBar(
         onTap: onTapMenu,

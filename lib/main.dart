@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:majob/Match/model/MatchCard.dart';
 import 'package:majob/SignIn/SignIn.dart';
-import 'package:majob/profile/profile.dart';
+import 'package:majob/profile/view/profile.dart';
 import './Main/main_login.dart';
 import './Match/Match.dart';
 import './Chat/views/chat_screen.dart';

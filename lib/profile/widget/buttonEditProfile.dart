@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:majob/profile/view/editPersonalProfile.dart';
 
 class ButtonEditProfile extends StatelessWidget {
-
   final Function editNavigation;
   final String titleButton;
-  ButtonEditProfile({
-    @required this.titleButton,
-    @required this.editNavigation
-  });
+  ButtonEditProfile(
+      {@required this.titleButton, @required this.editNavigation});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +30,17 @@ class ButtonEditProfile extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                       fontSize: 18),
                 ),
-                onPressed: editNavigation),
+                // onPressed: (){
+                //   print('alexandre');
+                //   Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //       builder: (context)=>EditPersonalProfile()
+                //     )
+                //   );
+                // }
+                onPressed: editNavigation
+                ),
           )
         ],
       ),

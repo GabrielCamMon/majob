@@ -14,7 +14,7 @@ class Main extends StatefulWidget {
 
 class _Main extends State<Main> {
   //default is 0 because to init in Home
-  int _currentIndex = 0;
+  int _currentIndex = 1;
   final List<Widget> _ontapMenu = [
     Profile(),
     CardExemple3(),

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:majob/profile/model.dart';
+import 'package:majob/profile/model/profile.dart';
+import 'package:majob/profile/view/editPersonalProfile.dart';
+import 'package:majob/profile/view/editProfissionalProfile.dart';
+import 'package:majob/profile/widget/buttonEditProfile.dart';
 
 class Profile extends StatelessWidget {
   
   final profile= ProfileModel(
     name: 'Alexandre Oliveira Ribeiro',
-    age: '25',
+    birth: '17/12/1994',
     city: 'Fortaleza',
     sex: 'M',
     specialty: 'Desenvolvedor de Sitemas'
@@ -40,8 +43,36 @@ class Profile extends StatelessWidget {
     );
   }
 
+
+
+    // void navigationProfile(){
+    //    print('alexa');
+    // }
+
+    
+
   @override
   Widget build(BuildContext context) {
+
+    void navigationPersonalProfile(){
+
+       Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => EditPersonalProfile()
+        )
+      );
+    }
+
+    void navigationProfissionalProfile(){
+       Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => EditProfissionalProfile()
+        )
+      );
+    }
+
     //pegando medidas para ficar padronizado (independente da tela)
     Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
@@ -70,7 +101,17 @@ class Profile extends StatelessWidget {
                         fontWeight: FontWeight.w300
                       ),
 
-                    )                  
+
+
+                    ),
+                    ButtonEditProfile(
+                      titleButton: 'PESSOAL',
+                      editNavigation: navigationPersonalProfile,
+                    ),
+                    ButtonEditProfile(
+                      titleButton: 'PROFISSIONAL',
+                      editNavigation: navigationProfissionalProfile,
+                    )
                 ],
               ),
             ),

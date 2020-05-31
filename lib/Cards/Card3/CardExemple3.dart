@@ -10,16 +10,14 @@ class CardExemple3 extends StatefulWidget {
 class _CardExemple3State extends State<CardExemple3> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-          body: TinderSwapCard(
+    return Scaffold(
+      body: TinderSwapCard(
         demoProfiles: demoProfiles,
         myCallback: (decision) {},
-      )),
+      ),
     );
   }
 }
-
 
 //dummy data
 final List<Profile> demoProfiles = [

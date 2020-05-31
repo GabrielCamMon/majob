@@ -32,28 +32,30 @@ class _TinderSwapCardState extends State<TinderSwapCard> {
           padding: const EdgeInsets.all(16.0),
           child: new Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            
             children: <Widget>[
-              new RoundIconButton.small(
-                icon: Icons.refresh,
-                iconColor: Colors.orange,
-                onPressed: () {},
-              ),
+              // new RoundIconButton.small(
+              //   icon: Icons.refresh,
+              //   iconColor: Colors.orange,
+              //   onPressed: () {},
+              // ),
               new RoundIconButton.large(
                 icon: Icons.clear,
+                
                 iconColor: Colors.red,
                 onPressed: () {
                   matchEngine.currentMatch.nope();
                   matchEngine.cycleMatch();
                 },
               ),
-              new RoundIconButton.small(
-                icon: Icons.star,
-                iconColor: Colors.blue,
-                onPressed: () {
-                  matchEngine.currentMatch.superLike();
-                  matchEngine.cycleMatch();
-                },
-              ),
+              // new RoundIconButton.small(
+              //   icon: Icons.star,
+              //   iconColor: Colors.blue,
+              //   onPressed: () {
+              //     matchEngine.currentMatch.superLike();
+              //     matchEngine.cycleMatch();
+              //   },
+              // ),
               new RoundIconButton.large(
                 icon: Icons.favorite,
                 iconColor: Colors.green,
@@ -62,11 +64,11 @@ class _TinderSwapCardState extends State<TinderSwapCard> {
                   matchEngine.cycleMatch();
                 },
               ),
-              new RoundIconButton.small(
-                icon: Icons.lock,
-                iconColor: Colors.purple,
-                onPressed: () {},
-              ),
+              // new RoundIconButton.small(
+              //   icon: Icons.lock,
+              //   iconColor: Colors.purple,
+              //   onPressed: () {},
+              // ),
             ],
           ),
         ));

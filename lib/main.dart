@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:majob/Match/model/MatchCard.dart';
 import 'package:majob/SignIn/SignIn.dart';
+import 'package:majob/profile/view/editPersonalProfile.dart';
 import 'package:majob/profile/view/profile.dart';
 import './Main/main_login.dart';
 import './Match/Match.dart';
@@ -42,8 +43,9 @@ class _MyHomeState extends State<MyHome> {
   Widget build(BuildContext context) {
     return Container(
       //child: Match(),
-      //child: SignIn(),
+      // child: SignIn() ,
       child: Main(),
+      // child: EditPersonalProfile(),
       //child:ChatScreen()
     );
   }

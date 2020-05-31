@@ -8,7 +8,7 @@ class Profile extends StatelessWidget {
   
   final profile= ProfileModel(
     name: 'Alexandre Oliveira Ribeiro',
-    age: '25',
+    birth: '17/12/1994',
     city: 'Fortaleza',
     sex: 'M',
     specialty: 'Desenvolvedor de Sitemas'
@@ -55,6 +55,7 @@ class Profile extends StatelessWidget {
   Widget build(BuildContext context) {
 
     void navigationPersonalProfile(){
+
        Navigator.push(
         context,
         MaterialPageRoute(

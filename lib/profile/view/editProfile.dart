@@ -1,32 +1,51 @@
 import 'package:flutter/material.dart';
-import 'package:majob/Main/widget/appBarMajob.dart';
+import 'package:flutter/widgets.dart';
+import 'package:majob/profile/widget/radialProgress.dart';
+import 'package:majob/profile/widget/roudedImage.dart';
 
-class EditProfile extends StatefulWidget {  
+class InfoProfile extends StatelessWidget {
 
-  @override
-  _EditProfile createState() => _EditProfile();
-}
+  String name = '';
+  String speciality = '';
 
-class _EditProfile extends State<EditProfile>{
-
+  InfoProfile({
+    this.name,
+    this.speciality
+  }); 
+  
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBarMajob(),
-      body: Padding(
-        padding: const EdgeInsets.all(8),
-        child: Column(
-          children: <Widget>[
-            TextField(
-              
-              decoration: InputDecoration(
-                labelText: 'NOME',
-                border: OutlineInputBorder()
-              ),
-            )
-          ],
-        ),
+    return Expanded(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          RadialProgress(
+            width: 4,
+            goalCompleted: 0.9,
+            child: RoundedImage(
+              imagePath: "assets/images/eu.jpg",
+              size: Size.fromWidth(150.0),
+            ),
+          ),
+          SizedBox(height: 10,),
+          Text(
+            (name == null)? '':name,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 24,
+              fontWeight: FontWeight.bold
+            ),
+          ),
+          Text(
+            (speciality == null)? '':speciality,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 19,
+              fontWeight: FontWeight.w500
+            ),
+          ),
+        ],
       ),
     );
   }

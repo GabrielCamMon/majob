@@ -12,6 +12,7 @@ class InfoProfile extends StatelessWidget {
     this.name,
     this.speciality
   }); 
+  
 
   @override
   Widget build(BuildContext context) {

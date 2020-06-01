@@ -4,9 +4,14 @@ import 'package:majob/profile/widget/infoProfile.dart';
 import 'package:majob/profile/widget/opaqueImage.dart';
 
 class Profile extends StatelessWidget {
+  Function googleLogout;
+  Profile({
+    this.googleLogout
+  });
+
+
   @override
   Widget build(BuildContext context) {
-    Size screenSize = MediaQuery.of(context).size;
     return Stack(
       children: <Widget>[
         Column(
@@ -39,7 +44,7 @@ class Profile extends StatelessWidget {
                                   icon: Icons.exit_to_app,                        
                                   iconColor: Colors.blue[500],
                                   
-                                  onPressed: () {}
+                                  onPressed: googleLogout
                                 ),
                                 RoundIconButton(
                                   size: 80,

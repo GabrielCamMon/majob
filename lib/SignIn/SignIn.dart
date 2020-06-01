@@ -117,7 +117,9 @@ class _SignInState extends State<SignIn> {
     return Scaffold(
          backgroundColor: Theme.of(context).primaryColor,
         body: isSignIn
-            ? Main()
+            ? Main(
+              googleLogout: googleSignOut,
+            )
             : Login(handleSignIn),
       );
   }

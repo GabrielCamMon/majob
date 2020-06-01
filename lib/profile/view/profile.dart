@@ -21,7 +21,7 @@ class Profile extends StatefulWidget {
 
 class _Profile extends  State<Profile> {
   Function googleLogout;
-  ProfileModel profileModel;
+  ProfileModel profileModel = ProfileModel();
 
 
   _Profile({
@@ -91,8 +91,8 @@ class _Profile extends  State<Profile> {
                             alignment: Alignment.centerLeft,
                           ),
                           InfoProfile(
-                            name: profileModel.name,
-                            speciality: profileModel.speciality,
+                            name: (profileModel.name== null)? '':profileModel.name ,
+                            speciality: (profileModel.speciality == null)? '': profileModel.speciality,
                           ),
                           Container(
                             margin: EdgeInsets.only(bottom: 60),

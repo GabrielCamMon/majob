@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "336427061644-6fej1q4ub2amq30q3q89s0j096qhfcjr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gb.majob",
+            "certificate_hash": "8f0fedd5f1b512c6e809db0d42c322a5bb0cb25b"
+          }
+        },
+        {
           "client_id": "336427061644-geocmlke9g7954rgub13p8cddrf4v7hf.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

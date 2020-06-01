@@ -9,7 +9,7 @@ class MatchEngine extends ChangeNotifier {
     List<Match> matches,
   }) : _matches = matches {
     _currrentMatchIndex = 0;
-    _nextMatchIndex = 0;
+    _nextMatchIndex = 1;
   }
 
   Match get currentMatch => _matches[_currrentMatchIndex];

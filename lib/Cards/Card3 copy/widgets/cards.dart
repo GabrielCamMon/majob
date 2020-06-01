@@ -1,5 +1,4 @@
 import 'dart:math';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:flutter/material.dart';
 import 'package:fluttery_dart2/layout.dart';
@@ -23,8 +22,6 @@ class _CardStackState extends State<CardStack> {
   Match _currentMatch;
   double _nextCardScale = 0.0;
 
-  final Firestore _firestore = Firestore.instance;
-
   @override
   void initState() {
     super.initState();
@@ -42,7 +39,7 @@ class _CardStackState extends State<CardStack> {
 
     if (widget.matchEngine != oldWidget.matchEngine) {
       oldWidget.matchEngine.removeListener(_onMatchEngineChange);
-       widget.matchEngine.addListener(_onMatchEngineChange);
+      widget.matchEngine.addListener(_onMatchEngineChange);
 
       if (_currentMatch != null) {
         _currentMatch.removeListener(_onMatchChange);
@@ -73,7 +70,7 @@ class _CardStackState extends State<CardStack> {
 
       _currentMatch = widget.matchEngine.currentMatch;
       if (_currentMatch != null) {
-         _currentMatch.addListener(_onMatchChange);
+        _currentMatch.addListener(_onMatchChange);
       }
 
       _frontCard = new Key(_currentMatch.profile.name);
@@ -81,16 +78,6 @@ class _CardStackState extends State<CardStack> {
   }
 
   _onMatchChange() {
-     Match currenMatch = widget.matchEngine.currentMatch;
-     if(currenMatch.decision != Decision.indecided){
-       if(currenMatch.decision == Decision.like){
-      //    _firestore.collection('pendingmatch').add({
-      //      'requester':_currentMatch.profile.id,
-      //       'receiver':''
-      // });
-          print(_currentMatch.profile.id);
-       }
-     }
     setState(() {});
   }
 
@@ -247,7 +234,7 @@ class _DraggableCardState extends State<DraggableCard>
 
     slideOutAnimation = new AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 100),
+      duration: const Duration(milliseconds: 500),
     )
       ..addListener(() => setState(() {
             cardOffset = slideOutTween.evaluate(slideOutAnimation);

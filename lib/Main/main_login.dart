@@ -8,14 +8,15 @@ import '../Chat/views/chat_screen.dart';
 
 class Main extends StatefulWidget {
   Function googleLogout;
-
+  String uuidUser;
   Main({
-    this.googleLogout
+    this.googleLogout,this.uuidUser
   });
 
   _Main createState() {
     return _Main(
-      googleLogout: googleLogout
+      googleLogout: googleLogout,
+      uuidUser:uuidUser
     );
   }
 }
@@ -23,9 +24,11 @@ class Main extends StatefulWidget {
 class _Main extends State<Main> {
 
   Function googleLogout;
+  String uuidUser;
 
   _Main({
-    this.googleLogout
+    this.googleLogout,
+    this.uuidUser
   });
 
   //default is 0 because to init in Home
@@ -48,7 +51,7 @@ class _Main extends State<Main> {
         googleLogout();
       } ,
     ),
-    CardExemple3(),
+    CardExemple3(uuidUser:uuidUser),
     ChatScreen(),
   ];
     return Scaffold(

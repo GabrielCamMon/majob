@@ -120,12 +120,14 @@ class _SignInState extends State<SignIn> {
         body: isSignIn
             ? Main(
               googleLogout: googleSignOut,
+              uuidUser:uuidUser
             )
             : Login(handleSignIn),
       );
   }
 
   bool isSignIn = false;
+  String uuidUser= '';
 
   
 
@@ -142,6 +144,8 @@ class _SignInState extends State<SignIn> {
 
     _user = result.user;
     ProfileModel a = createOrGetprofile(_user);
+
+    uuidUser= _user.uid;
 
     setState(() {
       isSignIn = true;

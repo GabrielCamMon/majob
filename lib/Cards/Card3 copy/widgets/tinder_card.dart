@@ -14,7 +14,7 @@ class TinderSwapCard extends StatefulWidget {
   final String title;
   final List demoProfiles;
 
-  final Function myCallback;
+  final Function(Decision) myCallback;
 
   @override
   _TinderSwapCardState createState() => _TinderSwapCardState();
@@ -45,8 +45,6 @@ class _TinderSwapCardState extends State<TinderSwapCard> {
                   onPressed: () {
                     matchEngine.currentMatch.nope();
                     matchEngine.cycleMatch();
-                    widget.myCallback(match);
-                  
                   },
                 ),
               ),
@@ -66,8 +64,6 @@ class _TinderSwapCardState extends State<TinderSwapCard> {
                   onPressed: () {
                     matchEngine.currentMatch.like();
                     matchEngine.cycleMatch();
-                    widget.myCallback(match);
-
                   },
                 ),
               ),

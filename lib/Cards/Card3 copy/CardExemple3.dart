@@ -25,7 +25,6 @@ class _CardExemple3State extends State<CardExemple3> {
           final List<Profile> demoProfiles = new List();
           print('vezes');
           snapshot.data.documents.forEach((e) => demoProfiles.add(Profile(
-              id: e['uuidUser'],
               photos: ["assets/images/1.jpg"],
               name: e['name'],
               bio: e['about'])));
@@ -34,7 +33,6 @@ class _CardExemple3State extends State<CardExemple3> {
             demoProfiles: demoProfiles,
             myCallback: (decision) {
              print(decision);
-             print("funcionar pelo amor de deus");
             },
           );
         },

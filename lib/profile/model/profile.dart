@@ -1,6 +1,6 @@
 
 class ProfileModel {
-  
+  String uid;
   String name;
   String about;
   String speciality;
@@ -8,6 +8,7 @@ class ProfileModel {
   String uuidUser;
 
   ProfileModel({
+    this.uid,
     this.name,
     this.about,
     this.speciality,

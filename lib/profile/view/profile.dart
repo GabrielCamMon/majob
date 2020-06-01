@@ -17,6 +17,7 @@ class Profile extends StatefulWidget {
 }
 
 class _Profile extends State<Profile> {
+
   Function googleLogout;
   ProfileModel profileModel = ProfileModel();
 
@@ -35,9 +36,10 @@ class _Profile extends State<Profile> {
 
       setState(() {
         profileModel = ProfileModel(
+            uid: profileQuery.documentID,
             name: profileQuery['name'],
             about: profileQuery['about'],
-            speciality: profileQuery['spreciality'],
+            speciality: profileQuery['speciality'],
             type: profileQuery['type'],
             uuidUser: profileQuery['uuidUser']);
       });
@@ -57,7 +59,7 @@ class _Profile extends State<Profile> {
   Widget build(BuildContext context) {
     void navigationEditProfile() {
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => EditProfile()));
+          context, MaterialPageRoute(builder: (context) => EditProfile(profileModel: profileModel,)));
     }
 
     return Stack(

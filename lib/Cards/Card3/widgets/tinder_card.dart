@@ -14,7 +14,7 @@ class TinderSwapCard extends StatefulWidget {
   final String title;
   final List demoProfiles;
 
-  final Function(Decision) myCallback;
+  final Function myCallback;
 
   @override
   _TinderSwapCardState createState() => _TinderSwapCardState();
@@ -25,28 +25,30 @@ class _TinderSwapCardState extends State<TinderSwapCard> {
 
   Widget _buildBottomBar(MatchEngine matchEngine) {
     return BottomAppBar(
-
         color: Colors.transparent,
         elevation: 0.0,
         child: new Padding(
           padding: const EdgeInsets.all(16.0),
           child: new Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               // new RoundIconButton.small(
               //   icon: Icons.refresh,
               //   iconColor: Colors.orange,
               //   onPressed: () {},
               // ),
-              new RoundIconButton.large(
-                icon: Icons.clear,
-                
-                iconColor: Colors.red,
-                onPressed: () {
-                  matchEngine.currentMatch.nope();
-                  matchEngine.cycleMatch();
-                },
+              new Container(
+                margin: EdgeInsets.symmetric(horizontal: 48.0),
+                child: RoundIconButton.large(
+                  icon: Icons.clear,
+                  iconColor: Colors.red,
+                  onPressed: () {
+                    matchEngine.currentMatch.nope();
+                    matchEngine.cycleMatch();
+                    widget.myCallback(match);
+                  
+                  },
+                ),
               ),
               // new RoundIconButton.small(
               //   icon: Icons.star,
@@ -56,13 +58,18 @@ class _TinderSwapCardState extends State<TinderSwapCard> {
               //     matchEngine.cycleMatch();
               //   },
               // ),
-              new RoundIconButton.large(
-                icon: Icons.favorite,
-                iconColor: Colors.green,
-                onPressed: () {
-                  matchEngine.currentMatch.like();
-                  matchEngine.cycleMatch();
-                },
+              new Container(
+                margin: EdgeInsets.symmetric(horizontal: 48.0),
+                child: RoundIconButton.large(
+                  icon: Icons.favorite,
+                  iconColor: Colors.green,
+                  onPressed: () {
+                    matchEngine.currentMatch.like();
+                    matchEngine.cycleMatch();
+                    widget.myCallback(match);
+
+                  },
+                ),
               ),
               // new RoundIconButton.small(
               //   icon: Icons.lock,
@@ -80,7 +87,7 @@ class _TinderSwapCardState extends State<TinderSwapCard> {
         matches: widget.demoProfiles.map((final profile) {
       return Match(profile: profile);
     }).toList());
-  
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.only(top: 20.0),

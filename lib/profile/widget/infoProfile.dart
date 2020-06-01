@@ -4,11 +4,12 @@ import 'package:majob/profile/widget/radialProgress.dart';
 import 'package:majob/profile/widget/roudedImage.dart';
 
 class InfoProfile extends StatelessWidget {
-
+  String uid = '';
   String name = '';
   String speciality = '';
 
   InfoProfile({
+    this.uid,
     this.name,
     this.speciality
   }); 
@@ -24,7 +25,7 @@ class InfoProfile extends StatelessWidget {
             width: 4,
             goalCompleted: 0.9,
             child: RoundedImage(
-              imagePath: "assets/images/eu.jpg",
+              imagePath: (uid == 'OweCHIwlo2JHFKs7mDic')? "assets/images/eu.jpg":"assets/images/gabgit.jpeg",
               size: Size.fromWidth(150.0),
             ),
           ),

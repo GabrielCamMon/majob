@@ -71,7 +71,7 @@ class _Profile extends State<Profile> {
               child: Stack(
                 children: <Widget>[
                   OpaqueImage(
-                    imageUrl: "assets/images/eu.jpg",
+                    imageUrl: (profileModel.uid == 'OweCHIwlo2JHFKs7mDic')? "assets/images/eu.jpg":"assets/images/gabgit.jpeg",
                   ),
                   SafeArea(
                     child: Padding(
@@ -88,6 +88,9 @@ class _Profile extends State<Profile> {
                             speciality: (profileModel.speciality == null)
                                 ? ''
                                 : profileModel.speciality,
+                            uid: (profileModel.uid == null)
+                                ? ''
+                                : profileModel.uid,
                           ),
                           Container(
                             margin: EdgeInsets.only(bottom: 60),

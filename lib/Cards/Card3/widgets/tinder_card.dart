@@ -4,11 +4,13 @@ import './cards.dart';
 import './matches.dart';
 
 class TinderSwapCard extends StatefulWidget {
+  String uuidUser;
   TinderSwapCard({
     Key key,
     this.title,
     this.demoProfiles,
     this.myCallback,
+    this.uuidUser
   }) : super(key: key);
 
   final String title;
@@ -17,11 +19,13 @@ class TinderSwapCard extends StatefulWidget {
   final Function myCallback;
 
   @override
-  _TinderSwapCardState createState() => _TinderSwapCardState();
+  _TinderSwapCardState createState() => _TinderSwapCardState(uuidUser: uuidUser);
 }
 
 class _TinderSwapCardState extends State<TinderSwapCard> {
+  String uuidUser;
   Match match = new Match();
+  _TinderSwapCardState({this.uuidUser});
 
   Widget _buildBottomBar(MatchEngine matchEngine) {
     return BottomAppBar(
@@ -87,12 +91,12 @@ class _TinderSwapCardState extends State<TinderSwapCard> {
         matches: widget.demoProfiles.map((final profile) {
       return Match(profile: profile);
     }).toList());
-
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.only(top: 20.0),
         child: new CardStack(
             matchEngine: matchEngine,
+            uuidUser:uuidUser,
             onSwipeCallback: (match) {
               widget.myCallback(match);
             }),

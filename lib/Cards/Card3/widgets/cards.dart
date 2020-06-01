@@ -8,20 +8,24 @@ import './matches.dart';
 import './photos.dart';
 
 class CardStack extends StatefulWidget {
+  String uuidUser;
   final Function(Decision) onSwipeCallback;
 
   final MatchEngine matchEngine;
 
-  CardStack({this.matchEngine, this.onSwipeCallback});
+  CardStack({this.matchEngine, this.onSwipeCallback, this.uuidUser});
 
   @override
-  _CardStackState createState() => _CardStackState();
+  _CardStackState createState() => _CardStackState(uuidUser: uuidUser);
 }
 
 class _CardStackState extends State<CardStack> {
+  String uuidUser;
   Key _frontCard;
   Match _currentMatch;
   double _nextCardScale = 0.0;
+
+  _CardStackState({this.uuidUser});
 
   final Firestore _firestore = Firestore.instance;
 
@@ -42,7 +46,7 @@ class _CardStackState extends State<CardStack> {
 
     if (widget.matchEngine != oldWidget.matchEngine) {
       oldWidget.matchEngine.removeListener(_onMatchEngineChange);
-       widget.matchEngine.addListener(_onMatchEngineChange);
+      widget.matchEngine.addListener(_onMatchEngineChange);
 
       if (_currentMatch != null) {
         _currentMatch.removeListener(_onMatchChange);
@@ -73,7 +77,7 @@ class _CardStackState extends State<CardStack> {
 
       _currentMatch = widget.matchEngine.currentMatch;
       if (_currentMatch != null) {
-         _currentMatch.addListener(_onMatchChange);
+        _currentMatch.addListener(_onMatchChange);
       }
 
       _frontCard = new Key(_currentMatch.profile.name);
@@ -81,16 +85,33 @@ class _CardStackState extends State<CardStack> {
   }
 
   _onMatchChange() {
-     Match currenMatch = widget.matchEngine.currentMatch;
-     if(currenMatch.decision != Decision.indecided){
-       if(currenMatch.decision == Decision.like){
-      //    _firestore.collection('pendingmatch').add({
-      //      'requester':_currentMatch.profile.id,
-      //       'receiver':''
-      // });
-          print(_currentMatch.profile.id);
-       }
-     }
+    Match currenMatch = widget.matchEngine.currentMatch;
+    var matchesPending;
+    bool matchesPendingBool=false;
+    if (currenMatch.decision != Decision.indecided) {
+      if (currenMatch.decision == Decision.like) {
+        _firestore
+            .collection('pendingmatch')
+            .where("requester", isEqualTo: uuidUser)
+            .snapshots()
+            .listen((data) {
+          if (data.documents.length > 0) {
+            matchesPending = data.documents[0];
+          } else {
+            matchesPending = null;
+            matchesPendingBool=true;
+          }
+        });
+        if (matchesPendingBool) {
+          _firestore.collection('pendingmatch').add(
+              {'requester': _currentMatch.profile.id, 'receiver': uuidUser});
+        }else{
+          print('fazer o update');
+        }
+
+        //print(_currentMatch.profile.id);
+      }
+    }
     setState(() {});
   }
 

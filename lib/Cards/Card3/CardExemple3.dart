@@ -4,11 +4,16 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import './model/profiles.dart';
 
 class CardExemple3 extends StatefulWidget {
+ 
+  String uuidUser;
+  CardExemple3({this.uuidUser});
   @override
-  _CardExemple3State createState() => _CardExemple3State();
+  _CardExemple3State createState() => _CardExemple3State(uuidUser: uuidUser);
 }
 
 class _CardExemple3State extends State<CardExemple3> {
+  String uuidUser;
+  _CardExemple3State({this.uuidUser});
   // @override
   // void initState() {
   //   super.initState();
@@ -23,17 +28,25 @@ class _CardExemple3State extends State<CardExemple3> {
         builder: (context, snapshot) {
           if (!snapshot.hasData) return const Text('Loading...');
           final List<Profile> demoProfiles = new List();
-          print('vezes');
-          snapshot.data.documents.forEach((e) => demoProfiles.add(Profile(
+          
+          int i = 0;
+          var photosa=[['assets/images/gabgit.jpeg'],['assets/images/alegit.jpeg']];
+          snapshot.data.documents.forEach((e) => {
+            (i<1)?i++:i=0,
+             demoProfiles.add(Profile(
               id: e['uuidUser'],
-              photos: ["assets/images/1.jpg"],
+              photos: photosa[i],
               name: e['name'],
-              bio: e['about'])));
-
+              bio: e['about']))
+          }
+              );
+       
           return TinderSwapCard(
+            uuidUser:uuidUser,
             demoProfiles: demoProfiles,
             myCallback: (decision) {
              print(decision);
+             print(uuidUser);
              print("funcionar pelo amor de deus");
             },
           );

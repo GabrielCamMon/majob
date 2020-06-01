@@ -2,17 +2,17 @@
 class ProfileModel {
   
   String name;
-  String sex;
-  String birth;
-  String city;
-  String specialty;
+  String about;
+  String speciality;
+  String type;
+  String uuidUser;
 
   ProfileModel({
     this.name,
-    this.sex,
-    this.birth,
-    this.city,
-    this.specialty
+    this.about,
+    this.speciality,
+    this.type,
+    this.uuidUser
   });
 
 }

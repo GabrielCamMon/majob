@@ -2,10 +2,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:majob/profile/model/profile.dart';
 import '../Main/main_login.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import './login.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SignIn extends StatefulWidget {
   @override
@@ -13,6 +15,9 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
+
+  bool controlProfile = true; 
+
   final DatabaseReference databaseReference =
       FirebaseDatabase.instance.reference().child("pathDemo");
 
@@ -26,6 +31,63 @@ class _SignInState extends State<SignIn> {
     databaseReference
         .push()
         .set({'first_Name': 'Sujan', 'lastName': 'Gabriel'});
+  }
+  final Firestore _firestore = Firestore.instance;
+  ProfileModel createProfile(FirebaseUser user) {
+    if (controlProfile){
+
+      print('adicoinando profile');
+      _firestore.collection('profile').add({
+          'name': user.displayName,
+          'about': '',
+          'speciality': '',
+          'type': '',
+          'uuidUser': user.uid
+      });
+      controlProfile = false;
+      return ProfileModel(
+        name: user.displayName,
+        about: '',
+        speciality: '',
+        type: '',
+        uuidUser: user.uid
+      );
+    }
+  }
+
+  ProfileModel createOrGetprofile(FirebaseUser user){
+
+    ProfileModel profile;
+
+    print('passou aqui');
+
+    Firestore.instance
+      .collection('profile')
+      .where("uuidUser", isEqualTo:user.uid)
+      .snapshots()
+      .listen((data) {
+        if (controlProfile){
+          if (data.documents.length == 0){
+            profile = createProfile(user);
+            // return createProfile(user);
+          } else{
+            DocumentSnapshot profileQuery = data.documents[0];
+            profile = ProfileModel(
+              name: profileQuery['name'],
+              about: profileQuery['about'],
+              speciality: profileQuery['spreciality'],
+              type: profileQuery['type'],
+              uuidUser: profileQuery['uuidUser']
+            );
+          }
+          controlProfile = false;
+
+        }
+        return profile;
+      }
+        
+    );
+    
   }
 
 // @override
@@ -62,6 +124,8 @@ class _SignInState extends State<SignIn> {
 
   bool isSignIn = false;
 
+  
+
   Future<void> handleSignIn() async {
     GoogleSignInAccount googleSignInAccount = await _googleSignIn.signIn();
     GoogleSignInAuthentication googleSignInAuthentication =
@@ -74,6 +138,7 @@ class _SignInState extends State<SignIn> {
     AuthResult result = (await _auth.signInWithCredential(credential));
 
     _user = result.user;
+    ProfileModel a = createOrGetprofile(_user);
 
     setState(() {
       isSignIn = true;
@@ -87,5 +152,6 @@ class _SignInState extends State<SignIn> {
         isSignIn = false;
       });
     });
+    controlProfile = true;
   }
 }

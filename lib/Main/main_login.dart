@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:majob/Cards/Card3/CardExemple3.dart';
-import 'package:majob/Home/home.dart';
+//import 'package:majob/Home/home.dart';
 import 'package:majob/Main/widget/appBarMajob.dart';
 import 'package:majob/profile/view/profile.dart';
 import '../Chat/views/chat_screen.dart';
@@ -14,7 +14,7 @@ class Main extends StatefulWidget {
 
 class _Main extends State<Main> {
   //default is 0 because to init in Home
-  int _currentIndex = 1;
+  int _currentIndex = 0;
   final List<Widget> _ontapMenu = [
     Profile(),
     CardExemple3(),

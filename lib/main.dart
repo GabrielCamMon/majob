@@ -47,9 +47,9 @@ class _MyHomeState extends State<MyHome> {
   Widget build(BuildContext context) {
     return Container(
       //child: Match(),
-      child: SignIn() ,
-     // child: Main(),
-      // child: EditPersonalProfile(),
+       child: SignIn() ,
+    //  child: Main(),
+     // child: EditPersonalProfile(),
       //child:ChatScreen()
      //child: CardExemple3(),
     );

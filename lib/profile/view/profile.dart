@@ -7,49 +7,45 @@ import 'package:majob/profile/view/editProfile.dart';
 import 'package:majob/profile/widget/infoProfile.dart';
 import 'package:majob/profile/widget/opaqueImage.dart';
 
-class Profile extends StatefulWidget {  
-
+class Profile extends StatefulWidget {
   Function googleLogout;
 
-  Profile({
-    this.googleLogout
-  });
+  Profile({this.googleLogout});
 
   @override
   _Profile createState() => _Profile(googleLogout: googleLogout);
 }
 
-class _Profile extends  State<Profile> {
+class _Profile extends State<Profile> {
   Function googleLogout;
   ProfileModel profileModel = ProfileModel();
 
-
-  _Profile({
-    this.googleLogout
-  });
+  _Profile({this.googleLogout});
 
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
-  void getUser() async{
+  void getUser() async {
     FirebaseUser user = await FirebaseAuth.instance.currentUser();
     Firestore.instance
-      .collection('profile')
-      .where("uuidUser", isEqualTo:user.uid)
-      .snapshots()
-      .listen((data) {
-        DocumentSnapshot profileQuery = data.documents[0];
+        .collection('profile')
+        .where("uuidUser", isEqualTo: user.uid)
+        .snapshots()
+        .listen((data) {
+      DocumentSnapshot profileQuery = data.documents[0];
+
+      setState(() {
         profileModel = ProfileModel(
-          name: profileQuery['name'],
-          about: profileQuery['about'],
-          speciality: profileQuery['spreciality'],
-          type: profileQuery['type'],
-          uuidUser: profileQuery['uuidUser']
-        );
+            name: profileQuery['name'],
+            about: profileQuery['about'],
+            speciality: profileQuery['spreciality'],
+            type: profileQuery['type'],
+            uuidUser: profileQuery['uuidUser']);
       });
+    });
   }
-    //     
-    //   );
-  
+  //
+  //   );
+
   @override
   void initState() {
     // TODO: implement initState
@@ -59,16 +55,9 @@ class _Profile extends  State<Profile> {
 
   @override
   Widget build(BuildContext context) {
-
-    void navigationEditProfile(){
-       Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => EditProfile(
-            
-          )
-        )
-      );
+    void navigationEditProfile() {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => EditProfile()));
     }
 
     return Stack(
@@ -91,43 +80,37 @@ class _Profile extends  State<Profile> {
                             alignment: Alignment.centerLeft,
                           ),
                           InfoProfile(
-                            name: (profileModel.name== null)? '':profileModel.name ,
-                            speciality: (profileModel.speciality == null)? '': profileModel.speciality,
+                            name: (profileModel.name == null)
+                                ? ''
+                                : profileModel.name,
+                            speciality: (profileModel.speciality == null)
+                                ? ''
+                                : profileModel.speciality,
                           ),
                           Container(
                             margin: EdgeInsets.only(bottom: 60),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: <Widget>[
-                                
                                 RoundIconButton(
-                                  size: 80,
-                                  
-                                  icon: Icons.exit_to_app,                        
-                                  iconColor: Colors.blue[500],
-                                  
-                                  onPressed: googleLogout
-                                ),
+                                    size: 80,
+                                    icon: Icons.exit_to_app,
+                                    iconColor: Colors.blue[500],
+                                    onPressed: googleLogout),
                                 RoundIconButton(
-                                  size: 80,
-                                  
-                                  icon: Icons.edit,                        
-                                  iconColor: Colors.blue[500],
-                                  
-                                  onPressed: navigationEditProfile
-                                ),
+                                    size: 80,
+                                    icon: Icons.edit,
+                                    iconColor: Colors.blue[500],
+                                    onPressed: navigationEditProfile),
                               ],
                             ),
                           )
                         ],
                       ),
-                      
                     ),
                   ),
-                  
                 ],
               ),
-              
             ),
           ],
         )

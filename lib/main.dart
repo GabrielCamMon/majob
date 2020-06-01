@@ -5,7 +5,6 @@ import './Cards/Card1/CardExemple.dart';
 import './Cards/Card2/CardExemple2.dart';
 import './Cards/Card3/CardExemple3.dart';
 
-import 'package:majob/profile/view/editPersonalProfile.dart';
 import 'package:majob/profile/view/profile.dart';
 import './Main/main_login.dart';
 import './Match/Match.dart';
@@ -47,9 +46,9 @@ class _MyHomeState extends State<MyHome> {
   Widget build(BuildContext context) {
     return Container(
       //child: Match(),
-      child: SignIn() ,
-     // child: Main(),
-      // child: EditPersonalProfile(),
+      //  child: SignIn(),
+     child: Main(),
+     // child: EditPersonalProfile(),
       //child:ChatScreen()
      //child: CardExemple3(),
     );

@@ -23,7 +23,7 @@ class ButtonGoogleSingIn extends StatelessWidget {
             color: Colors.white,
           ),
         ),
-        onPressed: (){this._singIn();},
+        onPressed:this._singIn,
       ),
     );
   }

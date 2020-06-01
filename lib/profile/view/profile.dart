@@ -1,123 +1,135 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:majob/Cards/Card3/widgets/tinder_card.dart';
 import 'package:majob/profile/model/profile.dart';
-import 'package:majob/profile/view/editPersonalProfile.dart';
-import 'package:majob/profile/view/editProfissionalProfile.dart';
-import 'package:majob/profile/widget/buttonEditProfile.dart';
+import 'package:majob/profile/view/editProfile.dart';
+import 'package:majob/profile/widget/infoProfile.dart';
+import 'package:majob/profile/widget/opaqueImage.dart';
 
-class Profile extends StatelessWidget {
+class Profile extends StatefulWidget {  
+
+  Function googleLogout;
+
+  Profile({
+    this.googleLogout
+  });
+
+  @override
+  _Profile createState() => _Profile(googleLogout: googleLogout);
+}
+
+class _Profile extends  State<Profile> {
+  Function googleLogout;
+  ProfileModel profileModel;
+
+
+  _Profile({
+    this.googleLogout
+  });
+
+  final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+
+  void getUser() async{
+    FirebaseUser user = await FirebaseAuth.instance.currentUser();
+    Firestore.instance
+      .collection('profile')
+      .where("uuidUser", isEqualTo:user.uid)
+      .snapshots()
+      .listen((data) {
+        DocumentSnapshot profileQuery = data.documents[0];
+        profileModel = ProfileModel(
+          name: profileQuery['name'],
+          about: profileQuery['about'],
+          speciality: profileQuery['spreciality'],
+          type: profileQuery['type'],
+          uuidUser: profileQuery['uuidUser']
+        );
+      });
+  }
+    //     
+    //   );
   
-  final profile= ProfileModel(
-    name: 'Alexandre Oliveira Ribeiro',
-    birth: '17/12/1994',
-    city: 'Fortaleza',
-    sex: 'M',
-    specialty: 'Desenvolvedor de Sitemas'
-  );
-
-
-  Widget _buildCoverBackground(Size screensize){
-    return Container(
-      height: screensize.height/2.6,
-      color: Colors.blue[500],
-
-    );
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getUser();
   }
-
-  Widget _buildProfileImage(){
-    return Center(
-      child: Container(
-        width: 140.0,
-        height: 140.0,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/images/avatar_h.png'),
-            fit: BoxFit.cover
-          ),
-          borderRadius: BorderRadius.circular(80.0),
-          border: Border.all(
-            color: Colors.white,
-            width: 8.0
-          )
-        ),
-      ),
-    );
-  }
-
-
-
-    // void navigationProfile(){
-    //    print('alexa');
-    // }
-
-    
 
   @override
   Widget build(BuildContext context) {
 
-    void navigationPersonalProfile(){
-
+    void navigationEditProfile(){
        Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => EditPersonalProfile()
+          builder: (context) => EditProfile()
         )
       );
     }
 
-    void navigationProfissionalProfile(){
-       Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => EditProfissionalProfile()
-        )
-      );
-    }
-
-    //pegando medidas para ficar padronizado (independente da tela)
-    Size screenSize = MediaQuery.of(context).size;
-    return Scaffold(
-      body: Stack(
-        children: <Widget>[
-          _buildCoverBackground(screenSize),
-          SafeArea(
-            child: SingleChildScrollView(
-              child: Column(
+    return Stack(
+      children: <Widget>[
+        Column(
+          children: <Widget>[
+            Expanded(
+              flex: 4,
+              child: Stack(
                 children: <Widget>[
-                  SizedBox(
-                    height: screenSize.height / 6.1),
-                    _buildProfileImage(),
-                    Text(
-                      profile.name,
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.w500
+                  OpaqueImage(
+                    imageUrl: "assets/images/eu.jpg",
+                  ),
+                  SafeArea(
+                    child: Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Column(
+                        children: [
+                          Align(
+                            alignment: Alignment.centerLeft,
+                          ),
+                          InfoProfile(
+                            name: profileModel.name,
+                            speciality: profileModel.speciality,
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(bottom: 60),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: <Widget>[
+                                
+                                RoundIconButton(
+                                  size: 80,
+                                  
+                                  icon: Icons.exit_to_app,                        
+                                  iconColor: Colors.blue[500],
+                                  
+                                  onPressed: googleLogout
+                                ),
+                                RoundIconButton(
+                                  size: 80,
+                                  
+                                  icon: Icons.edit,                        
+                                  iconColor: Colors.blue[500],
+                                  
+                                  onPressed: navigationEditProfile
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
                       ),
+                      
                     ),
-                    Text(
-                      profile.specialty,
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w300
-                      ),
-
-
-
-                    ),
-                    ButtonEditProfile(
-                      titleButton: 'PESSOAL',
-                      editNavigation: navigationPersonalProfile,
-                    ),
-                    ButtonEditProfile(
-                      titleButton: 'PROFISSIONAL',
-                      editNavigation: navigationProfissionalProfile,
-                    )
+                  ),
+                  
                 ],
               ),
+              
             ),
-          )
-        ],
-      ),
+          ],
+        )
+      ],
     );
   }
 }

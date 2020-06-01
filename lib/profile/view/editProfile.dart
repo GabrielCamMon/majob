@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:majob/Main/widget/appBarMajob.dart';
 
-class EditPersonalProfile extends StatefulWidget {  
+class EditProfile extends StatefulWidget {  
 
   @override
-  _EditPersonalProfile createState() => _EditPersonalProfile();
+  _EditProfile createState() => _EditProfile();
 }
 
-class _EditPersonalProfile extends State<EditPersonalProfile>{
+class _EditProfile extends State<EditProfile>{
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

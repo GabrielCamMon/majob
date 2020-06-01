@@ -4,6 +4,15 @@ import 'package:majob/profile/widget/radialProgress.dart';
 import 'package:majob/profile/widget/roudedImage.dart';
 
 class InfoProfile extends StatelessWidget {
+
+  String name = '';
+  String speciality = '';
+
+  InfoProfile({
+    this.name,
+    this.speciality
+  }); 
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -20,7 +29,7 @@ class InfoProfile extends StatelessWidget {
           ),
           SizedBox(height: 10,),
           Text(
-            'Alexandre Oliveira Ribeiro',
+            (name == null)? '':name,
             style: TextStyle(
               color: Colors.white,
               fontSize: 24,
@@ -28,7 +37,7 @@ class InfoProfile extends StatelessWidget {
             ),
           ),
           Text(
-            'Sistemas de informação',
+            (speciality == null)? '':speciality,
             style: TextStyle(
               color: Colors.white,
               fontSize: 19,

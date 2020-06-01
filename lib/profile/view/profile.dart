@@ -1,17 +1,74 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:majob/Cards/Card3/widgets/tinder_card.dart';
+import 'package:majob/profile/model/profile.dart';
+import 'package:majob/profile/view/editProfile.dart';
 import 'package:majob/profile/widget/infoProfile.dart';
 import 'package:majob/profile/widget/opaqueImage.dart';
 
-class Profile extends StatelessWidget {
+class Profile extends StatefulWidget {  
+
   Function googleLogout;
+
   Profile({
     this.googleLogout
   });
 
+  @override
+  _Profile createState() => _Profile(googleLogout: googleLogout);
+}
+
+class _Profile extends  State<Profile> {
+  Function googleLogout;
+  ProfileModel profileModel;
+
+
+  _Profile({
+    this.googleLogout
+  });
+
+  final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+
+  void getUser() async{
+    FirebaseUser user = await FirebaseAuth.instance.currentUser();
+    Firestore.instance
+      .collection('profile')
+      .where("uuidUser", isEqualTo:user.uid)
+      .snapshots()
+      .listen((data) {
+        DocumentSnapshot profileQuery = data.documents[0];
+        profileModel = ProfileModel(
+          name: profileQuery['name'],
+          about: profileQuery['about'],
+          speciality: profileQuery['spreciality'],
+          type: profileQuery['type'],
+          uuidUser: profileQuery['uuidUser']
+        );
+      });
+  }
+    //     
+    //   );
+  
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getUser();
+  }
 
   @override
   Widget build(BuildContext context) {
+
+    void navigationEditProfile(){
+       Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => EditProfile()
+        )
+      );
+    }
+
     return Stack(
       children: <Widget>[
         Column(
@@ -31,7 +88,10 @@ class Profile extends StatelessWidget {
                           Align(
                             alignment: Alignment.centerLeft,
                           ),
-                          InfoProfile(),
+                          InfoProfile(
+                            name: profileModel.name,
+                            speciality: profileModel.speciality,
+                          ),
                           Container(
                             margin: EdgeInsets.only(bottom: 60),
                             child: Row(
@@ -52,7 +112,7 @@ class Profile extends StatelessWidget {
                                   icon: Icons.edit,                        
                                   iconColor: Colors.blue[500],
                                   
-                                  onPressed: () {}
+                                  onPressed: navigationEditProfile
                                 ),
                               ],
                             ),
